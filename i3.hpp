@@ -127,6 +127,10 @@ public slots:
         }
 
         _socket.connectToServer(_socket_path);
+
+        if (!_socket.waitForConnected()) {
+            throw std::runtime_error("unable to connect");
+        }
     }
 
     void disconnect()
@@ -137,6 +141,7 @@ public slots:
             const QMutexLocker locker(&_socket_mutex);
             _socket.abort();
             _socket.disconnectFromServer();
+            _socket.waitForDisconnected();
         }
     }
 
