@@ -19,18 +19,18 @@
 /* i3 */
 #include <i3/ipc.h>
 
-class i3 : public QObject
+class i3ipc : public QObject
 {
     Q_OBJECT
     /*
      * XXX: The official API doesn't define an invalid message type value.
      *      It defined the message type set by enumerating all _valid_ types.
-     * 		The following defines an additional value for signaling invalid message type states.
+     * 	    The following defines an additional value for signaling invalid message type states.
      */
     const quint32 IPC_MESSAGE_TYPE_INVALID = 0xffffffff;
 
 public:
-    explicit i3(QObject *parent = nullptr) : QObject(parent)
+    explicit i3ipc(QObject *parent = nullptr) : QObject(parent)
     {
         _socket_path = QProcessEnvironment::systemEnvironment().value("I3_SOCKET_PATH", "/tmp/i3.sock");
 

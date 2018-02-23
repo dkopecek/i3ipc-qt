@@ -1,36 +1,33 @@
-#include "i3.hpp"
+#include "i3ipc.hpp"
 
 #include <QLoggingCategory>
 #include <QDebug>
 
 int main(int argc, char *argv[])
 {
-//    QCoreApplication a(argc, argv);
     QLoggingCategory::defaultCategory()->setEnabled(QtDebugMsg, true);
 
-    i3 i3ipc;
+    i3ipc i3;
 
     qDebug() << "Connect.";
-    i3ipc.connect();
+    i3.connect();
 
-    qDebug() << "Version: " << i3ipc.getVersionString();
-    qDebug() << "Command (nop): " << i3ipc.runCommand("nop");
-    qDebug() << "Command (err): " << i3ipc.runCommand("invalid");
-    qDebug() << "get_workspaces: " << i3ipc.getWorkspaces();
-    qDebug() << "subscribe: " << i3ipc.subscribe({"output", "workspace"});
-    qDebug() << "get_outputs: " << i3ipc.getOutputs();
-    qDebug() << "get_config: " << i3ipc.getConfig();
-    qDebug() << "get_marks: " << i3ipc.getMarks();
-    qDebug() << "get_binding_modes: " << i3ipc.getBindingModes();
-    qDebug() << "get_bar_config: " << i3ipc.getBarConfig();
-    qDebug() << "get_bar_config(n): " << i3ipc.getBarConfig("bar-0");
-    qDebug() << "get_tree: " << i3ipc.getTree();
-    qDebug() << "Command (ws): " << i3ipc.runCommand("workspace 5");
-    qDebug() << "Command (ws): " << i3ipc.runCommand("workspace 1");
-    qDebug() << "get_workspaces: " << i3ipc.getWorkspaces();
+    qDebug() << "Version: " << i3.getVersionString();
+    qDebug() << "Command (nop): " << i3.runCommand("nop");
+    qDebug() << "Command (err): " << i3.runCommand("invalid");
+    qDebug() << "get_workspaces: " << i3.getWorkspaces();
+    qDebug() << "subscribe: " << i3.subscribe({"output", "workspace"});
+    qDebug() << "get_outputs: " << i3.getOutputs();
+    qDebug() << "get_config: " << i3.getConfig();
+    qDebug() << "get_marks: " << i3.getMarks();
+    qDebug() << "get_binding_modes: " << i3.getBindingModes();
+    qDebug() << "get_bar_config: " << i3.getBarConfig();
+    qDebug() << "get_bar_config(n): " << i3.getBarConfig("bar-0");
+    qDebug() << "get_tree: " << i3.getTree();
+    qDebug() << "Command (ws): " << i3.runCommand("workspace 5");
+    qDebug() << "Command (ws): " << i3.runCommand("workspace 1");
+    qDebug() << "get_workspaces: " << i3.getWorkspaces();
 
     qDebug() << "Disconnect.";
-    i3ipc.disconnect();
-
-//    return a.exec();
+    i3.disconnect();
 }
